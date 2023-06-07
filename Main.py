@@ -100,6 +100,45 @@ class WindowTwo(QMainWindow):                   #Window 2 - Shopping Cart prosec
         #Add layout to frames.
         self.frame2.setLayout(self.frame2Layout)
 
+        #----------------------------------------------------------
+
+        #Frame Button payments or return whit horizontal layout.
+        
+        #Define Frame Settings.
+        self.frame3=QFrame(self)
+        self.frame3.setGeometry(0,640,480, 80)
+
+        #Create "Button Panel" layout.
+        button_panel= QHBoxLayout()
+        buttonClear = Button('LIMPIAR Y REGRESAR', fontS= 10,fontF= "Italic",foreg= "#272727",backg= "#00FCA8", radius=11)  #Create button.
+        buttonPay = Button('IR A PAGOS', fontS= 10,fontF= "Italic",foreg= "#272727",backg= "#1ADDF9", radius=11)            #Create button.
+        button_panel.addWidget(buttonClear)                                                                                 #Add button to layout.
+        button_panel.addWidget(buttonPay)                                                                                   #Add button to layout.
+        buttonClear.clicked.connect(self.clearCart)                                                                         #Connect button to function.
+        buttonPay.clicked.connect(self.openPayments)                                                                        #Connect button to function.
+        
+        
+        #Add layout to Frame.
+        self.frame3.setLayout(button_panel)
+    
+
+    def openPayments(self):
+        self.hide()
+        #Window opening function 3 to add to cart.
+        self.wThree = WindowThree()
+        self.wThree.show()
+    
+
+    def clearCart(self):                        #Delete cart function, clear Database and Close Window to go back. 
+        deleteCart()
+        self.close()
+        self.wMain= MainWindow()
+        self.wMain.show()
+
+
+
+
+
 class MainWindow(QMainWindow):                  #Window 1 - Products addition to Shopping Cart
     def __init__(self):
         super().__init__()
