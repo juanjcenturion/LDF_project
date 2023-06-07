@@ -44,6 +44,39 @@ class WindowThree(QMainWindow):                 #Window 3 - calculate and pay.
 
         #----------------------------------------------------------
 
+        #Frame list of products add to cart whit vertical layout.
+        
+        #Define frame settings.
+        self.frame2= QFrame(self)
+        self.frame2.setGeometry(0, 140, 480, 620)
+
+        #Define other Frames
+        self.frame2Layout= QVBoxLayout()
+        self.frame2QFL= QFormLayout()
+
+        self.subtotal= 0
+
+        self.phonecartList= readCart()
+        for phone in self.phonecartList:
+            self.subtotal+= phone[1]
+
+        #------------------------------------------------------------
+
+        # Calculate total.
+
+        #Icome Tax - IVA And conversion to local money whith icome.
+        icomeIVA= 1.21
+        icomePAIS= 1.30
+        priceTuristDollar= 490
+        priceDollar= 155
+        if self.subtotal >= 300: 
+            self.total= (round(((self.subtotal * icomeIVA)*icomePAIS),2))
+            self.totalPesoArgentino = round(self.total * priceTuristDollar, 2)
+        else:
+            self.total= (round(((self.subtotal * icomeIVA)*icomePAIS),2))
+            self.totalPesoArgentino= round(self.total * priceDollar, 2)
+            
+        #---------------------------------------------------------------------------
 
 class WindowTwo(QMainWindow):                   #Window 2 - Shopping Cart prosecution.
     def __init__(self):
