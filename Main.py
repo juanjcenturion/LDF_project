@@ -48,7 +48,57 @@ class WindowTwo(QMainWindow):                   #Window 2 - Shopping Cart prosec
 
 
         #--------------------------------------------------------   
+    #Frame list of products add to cart whit vertical layout.
 
+        #Define frame settings.
+        self.frame2= QFrame(self)
+        self.frame2.setGeometry(0, 140, 480, 620)
+        
+        #Define other Frames
+        self.frame2Layout= QVBoxLayout()
+        
+        self.frame2QFL= QFormLayout()
+
+        
+        
+
+        #Subtotal: Phone shell.
+
+        self.subTotal=0
+        
+        #Read Cart from phonesDb.
+
+        self.phonecartList= readCart()
+        for phone in self.phonecartList:       
+            #Create QLabel from each selected phone.
+
+            self.textbx=Text(f"{phone[0]}",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF",hAlign="aT", vAlign= "aT")
+            self.priceStr= Text(f"U$D {phone[1]}",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF",hAlign="aR", vAlign= "aT")
+            
+            #Add Labels to QFromLayout.
+            self.frame2QFL.addRow(self.textbx, self.priceStr)
+            
+            # Addition to subtotal.
+            self.subTotal+= phone[1]
+        
+        
+
+
+        
+        #Create SubTotal QLabel and SubTotal texts
+        self.textSub= Text(f"SUBTOTAL:",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aT", vAlign= "aL")
+        self.subtotal= Text(f"U$D {self.subTotal}",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aT", vAlign= "aR")
+        self.textSub1 = Text(f"(Este valor no contiene impuestos.)",fontS= 5,fontF= "Arial Black", backg= "#272727", foreg= "#F8F8FF",hAlign= "aR", vAlign= "aR" )
+        
+        #Add Labels to QFormLayout
+        self.frame2QFL.addRow(self.textSub, self.subtotal)
+        self.frame2QFL.addRow("",self.textSub1)
+
+        #Add QFormLayout to Vertical Layout
+        self.frame2Layout.addLayout(self.frame2QFL)
+        
+        #Add layout to frames.
+        self.frame2.setLayout(self.frame2Layout)
 
 class MainWindow(QMainWindow):                  #Window 1 - Products addition to Shopping Cart
     def __init__(self):
