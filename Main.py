@@ -9,6 +9,41 @@ from PySide6.QtGui import *
 from Resources.styles_normalize import Text,Input,Button
 from controller import*
 
+class WindowThree(QMainWindow):                 #Window 3 - calculate and pay.
+    def _init_(self):
+        super()._init_()
+        
+        
+        #Window properties - 1. Title - 2.Style - 3. Fixed size.
+        self.setWindowTitle("SubStore - Sistema de pago.")
+        self.setStyleSheet("background-color: #272727;")
+        self.setFixedSize(QSize(480, 480))
+
+        #-----------------------------------------------------------
+
+        #Frame Title/Header whit Vertical Layout.
+
+        #Define Frame Settings.
+        self.frame1= QFrame(self)
+        self.frame1.setGeometry(57,30,368,105)
+        
+        #Create layout.
+        upperLayout =QVBoxLayout() 
+        #QLabel creation to store icon.
+        iconLabel= QLabel(self)
+        #Import Logo.png.
+        logo= QPixmap("Resources/pagos.png")
+        iconLabel.setPixmap(logo)
+        #Scaling for logo.
+        iconLabel.setScaledContents(True)
+        #Add Qlabel whit Widget.
+        upperLayout.addWidget(iconLabel)
+        
+        #Add layout to frame.
+        self.frame1.setLayout(upperLayout)
+
+        #----------------------------------------------------------
+
 
 class WindowTwo(QMainWindow):                   #Window 2 - Shopping Cart prosecution.
     def __init__(self):
