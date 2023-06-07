@@ -82,6 +82,54 @@ class MainWindow(QMainWindow):                  #Window 1 - Products addition to
 
         #---------------------------------------------
 
+        #Frame Combobox whit vertical layout for smartphones products.
+
+        #Define frame settings.
+        self.frame3= QFrame(self)
+        self.frame3.setGeometry(0,150,480,100)
+        
+        #Create layout.
+        frame3layout= QVBoxLayout()
+        
+        #Create and add items to Combobox.
+        self.products = QComboBox()
+        self.products.setPlaceholderText('Seleccione  un  producto')
+        self.products.setStyleSheet("background-color: #808080; font-family: Ubuntu Mono;")
+        self.products.setStyleSheet("color: #FFFFE0")
+        
+        
+        def espacios(c):
+            e =''
+            for _ in range(c):
+                e += " "
+            return e
+
+        #Data from database phones.- Celulares.db.
+        phones_list= readRows()
+        phoneNewList= []
+        for phone in phones_list:
+            
+            cE =60 - len(phone[1])
+            phonestr= phone[1] + espacios(cE) + phone[2]
+            phoneNewList.append(phonestr)
+    
+        self.products.addItems(phoneNewList)         
+
+
+        frame3layout.addWidget(self.products)                               #Add widget to layout.
+        
+        #Add layout to frame.
+        self.frame3.setLayout(frame3layout)
+
+
+        #---------------------------------------------------
+        
+        #Create variable count click.
+        self.counter= 0 
+        
+
+
+
 if __name__ == '__main__':                      #App Execution.
     app = QApplication()
     window = MainWindow()
