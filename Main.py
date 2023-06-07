@@ -78,6 +78,76 @@ class WindowThree(QMainWindow):                 #Window 3 - calculate and pay.
             
         #---------------------------------------------------------------------------
 
+
+        #Create Total QLabel and Total texts
+        self.textSub= Text(f"SUBTOTAL:",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aT", vAlign= "aL")
+        self.subtotal= Text(f"U$D {self.subtotal}",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aT", vAlign= "aR")
+        self.textSub1 = Text(f"(Este valor no contiene impuestos.)",fontS= 5,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF",hAlign= "aR", vAlign= "aR" )
+        self.totaltext= Text(f"TOTAL:",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aT", vAlign= "aL")
+        self.total= Text(f"U$D {self.total}",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aT", vAlign= "aR")
+        self.totaltextPeso= Text(f"TOTAL EN AR$:",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aL", vAlign= "aL")
+        self.totalInPeso = Text(f"AR$ {self.totalPesoArgentino}",fontS= 13,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF", hAlign= "aT", vAlign= "aR")
+        self.textTotal = Text(f"(Valor final de compra.)",fontS= 5,fontF= "Italic", backg= "#272727", foreg= "#F8F8FF",hAlign= "aR", vAlign= "aR" )
+        
+        #Add Labels to QFormLayout
+        self.frame2QFL.addRow(self.textSub, self.subtotal)
+        self.frame2QFL.addRow(self.textSub1)
+        self.frame2QFL.addRow(self.totaltext, self.total)
+        self.frame2QFL.addRow(self.totaltextPeso, self.totalInPeso)
+        self.frame2QFL.addRow(self.textTotal)
+        
+
+        #Add QFormLayout to Vertical Layout
+        self.frame2Layout.addLayout(self.frame2QFL)
+            
+        #Add layout to frame.
+        self.frame2.setLayout(self.frame2Layout)
+
+        #------------------------------------------------------------------------
+
+        #Frame Button payments or return whit horizontal layout.
+        #Define Frame Settings.
+        self.frame3=QFrame(self)
+        self.frame3.setGeometry(0,400,480, 80)
+
+        #Create "Button Panel" layout.
+        button_panel= QHBoxLayout()
+        buttonReturn = Button('REGRESAR', fontS= 10,fontF= "Italic",foreg= "#272727",backg= "#00FCA8", radius=11)  #Create button.
+        buttonPay = Button('PAGAR', fontS= 10,fontF= "Italic",foreg= "#272727",backg= "#1ADDF9", radius=11)  #Create button.
+        button_panel.addWidget(buttonReturn)         #Add button to layout.
+        button_panel.addWidget(buttonPay)           #Add button to layout.
+
+        #Connect button to function.
+        buttonReturn.clicked.connect(self.backToPreviousWindow)
+        buttonPay.clicked.connect(self.paymentCompleted) 
+        
+        #Add layout to Frame.
+        self.frame3.setLayout(button_panel)
+
+        #-------------------------------------------------------------------------
+
+
+    def  paymentCompleted(self):
+        self.close()
+        finishmsgb = QMessageBox()
+
+        finishmsgb.setGeometry(250,400, 240,240)
+        finishmsgb.setStyleSheet("background-color: #272727; color: #F8F8FF")
+        finishmsgb.setText(f"Usted ha finalizado la compra!! \nPago total de: AR${self.totalPesoArgentino}")
+        finishmsgb.setFont(QFont("Italic", 10))
+        finishmsgb.setWindowTitle("Compra finalizada!")
+        finishmsgb.setStandardButtons(QMessageBox.Close)
+        finishmsgb.exec()
+
+
+        deleteCart()
+
+    #------------------------------------------------------
+
+
+    def backToPreviousWindow(self):
+        self.close()
+
 class WindowTwo(QMainWindow):                   #Window 2 - Shopping Cart prosecution.
     def __init__(self):
         super().__init__()
