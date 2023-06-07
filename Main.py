@@ -6,6 +6,48 @@ from datetime import datetime
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
+from Resources.styles_normalize import Text,Input,Button
+from controller import*
+
+
+class WindowTwo(QMainWindow):                   #Window 2 - Shopping Cart prosecution.
+    def __init__(self):
+        super().__init__()
+       
+        #Window properties - 1. Title - 2.Style - 3. Fixed size.
+        self.setWindowTitle("SubStore - Carrito de compras.")
+        self.setStyleSheet("background-color: #272727;")
+        self.setFixedSize(QSize(480, 720))
+       
+        #------------------------------------------------------
+
+        #Frame Title/Header whit Vertical Layout.
+
+        #Define Frame Settings.
+        self.frame1= QFrame(self)
+        self.frame1.setGeometry(57,30,368,105)
+       
+        #Create layout.
+        upperLayout =QVBoxLayout()
+
+        #QLabel creation to store icon.
+        iconLabel= QLabel(self)
+
+        #Import Logo.png.
+        logo= QPixmap("Resources/carry.png")
+        iconLabel.setPixmap(logo)
+       
+        #Scaling for logo.
+        iconLabel.setScaledContents(True)
+
+        #Add Qlabel whit Widget.
+        upperLayout.addWidget(iconLabel)
+       
+        #Add layout to frame.
+        self.frame1.setLayout(upperLayout)
+
+
+        #--------------------------------------------------------   
 
 
 class MainWindow(QMainWindow):                  #Window 1 - Products addition to Shopping Cart
