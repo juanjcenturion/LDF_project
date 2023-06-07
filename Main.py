@@ -126,7 +126,37 @@ class MainWindow(QMainWindow):                  #Window 1 - Products addition to
         
         #Create variable count click.
         self.counter= 0 
+     
+      def addToCart(self):                                    #Function add products to shopping car and Count.
+        #counter
+        self.counter +=1 
+        #Create List Cart.
         
+        item= self.products.currentText()
+        smartphone= item.split("$")
+        strEnd= 2 + smartphone[0].find("gb")
+        model, price = smartphone[0][0:strEnd], smartphone[1]
+        #price= int(price[4:])
+        createCartTable()
+        insertProdToCart(model, price)
+
+        productAddedMsgb = QMessageBox()
+
+        productAddedMsgb.setGeometry(250,400, 240,240)
+        productAddedMsgb.setStyleSheet(f"background-color: {self.colorback}; color: white ")
+        productAddedMsgb.setText(f"Ha agregado el producto a su carrito.")
+        productAddedMsgb.setFont(QFont("Ubuntu Mono Bold", 10))
+        productAddedMsgb.setWindowTitle("Producto agregado!!")
+        productAddedMsgb.setDefaultButton(QMessageBox.Ok)
+        productAddedMsgb.exec()
+        
+        
+    def openWindow(self):
+        self.hide()
+        #Window opening function 2 to add to cart.
+        self.wTwo = WindowTwo()
+        self.wTwo.show()
+ 
 
 
 
