@@ -396,7 +396,7 @@ class MainWindow(QMainWindow):                  #Window 1 - Products addition to
         #Create variable count click.
         self.counter= 0 
      
-      def addToCart(self):                                    #Function add products to shopping car and Count.
+    def addToCart(self):                                    #Function add products to shopping car and Count.
         #counter
         self.counter +=1 
         #Create List Cart.
