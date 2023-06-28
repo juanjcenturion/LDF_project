@@ -7,11 +7,11 @@ from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from Resources.styles_normalize import Text,Input,Button
-from controller import*
+from controller import *
 
 class WindowThree(QMainWindow):                 #Window 3 - calculate and pay.
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         
         
         #Window properties - 1. Title - 2.Style - 3. Fixed size.
@@ -425,7 +425,7 @@ class MainWindow(QMainWindow):                  #Window 1 - Products addition to
         #Window opening function 2 to add to cart.
         self.wTwo = WindowTwo()
         self.wTwo.show()
- 
+
 
 
 
