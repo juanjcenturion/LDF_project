@@ -14,12 +14,11 @@ nuestros contactos:
 
 para poder ejecutar este proyecto necesitas seguir los siguientes pasos:
 
-1. clonar nuestro repositorio en tu maquina local.
-
-2. crear un entorno virtual e instalar lo siguiente:
+1. crear un entorno virtual e instalar lo siguiente:
     - sudo apt install python3-pip
     - pip install PySide6
-    - pip install PyQt5
+    
+2. clonar nuestro repositorio en tu maquina local.
 
-3. correr el archivo python 
+3. correr el archivo python en la terminal de tu editor de codigo.
 
